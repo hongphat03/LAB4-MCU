@@ -9,6 +9,10 @@
 #define INC_FSM_MANUAL_H_
 
 #include "global.h"
+#include "software_timer.h"
+#include "main.h"
+#include "button.h"
+#include "7segment.h"
 void fsm_manual_run();
 
 #endif /* INC_FSM_MANUAL_H_ */

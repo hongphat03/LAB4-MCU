@@ -5,5 +5,9 @@
  *      Author: Hong Phat
  */
 #include "global.h"
-int status = 0;
+int counter;
+int status;
+int timer_red = 5000;
+int timer_yellow = 3000;
+int timer_green = 2000;
 
