@@ -106,7 +106,6 @@ void fsm_automatic_run(){
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
 				setTimer2(500);
 			}
 			break;
@@ -129,7 +128,6 @@ void fsm_automatic_run(){
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
 				setTimer2(500);
 			}
 			break;
@@ -152,7 +150,6 @@ void fsm_automatic_run(){
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
 				setTimer2(500);
 			}
 			break;

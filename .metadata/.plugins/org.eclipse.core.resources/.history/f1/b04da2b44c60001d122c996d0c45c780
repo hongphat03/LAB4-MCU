@@ -23,7 +23,6 @@ void fsm_manual_run(){
 			setTimer2(500);
 			set_timer = 0;
 			status = MAN_YELLOW;
-			status2 = MAN_YELLOW;
 		}
 		if(isButton2Pressed() == 1){
 			set_timer++;
@@ -46,7 +45,6 @@ void fsm_manual_run(){
 				set_timer = 0;
 				setTimer2(500);
 				status = MAN_GREEN;
-				status2 = MAN_GREEN;
 			}
 			if(isButton2Pressed() == 1){
 				set_timer++;
@@ -67,8 +65,8 @@ void fsm_manual_run(){
 		}
 		if(isButton1Pressed() == 1){
 			set_timer = 0;
-			status = INIT;
-			status2 = INIT;
+			status = AUTO_RED;
+			setTimer(timer_red);
 		}
 		if(isButton2Pressed() == 1){
 			set_timer++;

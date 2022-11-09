@@ -99,7 +99,7 @@ int main(void)
   status = INIT;
   status2 = INIT;
   setTimer3(50);
-  int led = 1;
+  int mode = 1;
 // status2 = INIT;
 // setTimer2(5000);
   while (1)
@@ -107,9 +107,8 @@ int main(void)
 
 	  if(timer3_flag == 1){
 	  setTimer3(250);
-	  display(led,1);
-	  led++;
-	  if(led > 4) led = 1;
+	  display(mode++);
+	  if(mode > 4) mode = 1;
 	  }
 	  fsm_automatic_run();
 	  fsm_manual_run();
