@@ -1,0 +1,110 @@
+/*
+ * display.c
+ *
+ *  Created on: Nov 9, 2022
+ *      Author: Hong Phat
+ */
+#include "display.h"
+void display(int mode){
+		switch(status){
+			case AUTO_RED:
+				if(mode == 1){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,0);
+					display7SEG(timerred_counter/10);
+				}
+				if(mode == 2){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,0);
+					display7SEG(timerred_counter%10);
+				}
+				break;
+			case AUTO_YELLOW:
+				if(mode == 1){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,0);
+					display7SEG(timeryellow_counter/10);
+				}
+				if(mode == 2){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,0);
+					display7SEG(timeryellow_counter%10);
+				}
+				break;
+			case AUTO_GREEN:
+				if(mode == 1){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,0);
+					display7SEG(timergreen_counter/10);
+				}
+				if(mode == 2){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,0);
+					display7SEG(timergreen_counter%10);
+				}
+				break;
+		}
+
+		switch(status2){
+			case AUTO_RED:
+				if(mode == 3){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					display7SEG(timerred_counter/10);
+				}
+				if(mode == 4){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					display7SEG(timerred_counter%10);
+				}
+				break;
+			case AUTO_YELLOW:
+				if(mode == 3){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					display7SEG(timeryellow_counter/10);
+				}
+				if(mode == 4){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					display7SEG(timeryellow_counter%10);
+				}
+				break;
+			case AUTO_GREEN:
+				if(mode == 3){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					display7SEG(timergreen_counter/10);
+				}
+				if(mode == 4){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					display7SEG(timergreen_counter%10);
+				}
+				break;
+		}
+	}

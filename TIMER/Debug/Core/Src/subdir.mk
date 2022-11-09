@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Core/Src/7segment.c \
 ../Core/Src/button.c \
+../Core/Src/display.c \
 ../Core/Src/fsm_automatic.c \
 ../Core/Src/fsm_manual.c \
 ../Core/Src/global.c \
@@ -21,6 +22,7 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/7segment.o \
 ./Core/Src/button.o \
+./Core/Src/display.o \
 ./Core/Src/fsm_automatic.o \
 ./Core/Src/fsm_manual.o \
 ./Core/Src/global.o \
@@ -35,6 +37,7 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/7segment.d \
 ./Core/Src/button.d \
+./Core/Src/display.d \
 ./Core/Src/fsm_automatic.d \
 ./Core/Src/fsm_manual.d \
 ./Core/Src/global.d \

@@ -77,5 +77,150 @@
 //
 //}
 void fsm_automatic_run(){
-
+	switch(status){
+		case INIT:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
+			status = AUTO_RED;
+			setTimer2(1000);
+			timerred_counter = timer_red/1000;
+			setTimer(timer_red);
+			break;
+		case AUTO_RED:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
+			if(timer2_flag == 1){
+				setTimer2(1000);
+				timerred_counter--;
+			}
+			if(timer1_flag == 1){
+				setTimer2(1000);
+				timergreen_counter = timer_green/1000;
+				setTimer(timer_green);
+				status = AUTO_GREEN;
+			}
+			if(isButton1Pressed() == 1){
+				status = MAN_RED;
+				status2 = MAN_RED;
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
+				setTimer2(500);
+			}
+			break;
+		case AUTO_YELLOW:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,0);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
+			if(timer2_flag == 1){
+				setTimer2(1000);
+				timeryellow_counter--;
+			}
+			if(timer1_flag == 1){
+				status = AUTO_RED;
+				setTimer2(1000);
+				timerred_counter = timer_red/1000;
+				setTimer(timer_red);
+			}
+			if(isButton1Pressed() == 1){
+				status = MAN_RED;
+				status2 = MAN_RED;
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
+				setTimer2(500);
+			}
+			break;
+		case AUTO_GREEN:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,0);
+			if(timer2_flag == 1){
+				setTimer2(1000);
+				timergreen_counter--;
+			}
+			if(timer1_flag == 1){
+				status = AUTO_YELLOW;
+				setTimer2(1000);
+				timeryellow_counter = timer_yellow/1000;
+				setTimer(timer_yellow);
+			}
+			if(isButton1Pressed() == 1){
+				status = MAN_RED;
+				status2 = MAN_RED;
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
+				setTimer2(500);
+			}
+			break;
+	}
+	switch(status2){
+		case INIT:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
+			status2 = AUTO_GREEN;
+			setTimer5(1000);
+			timergreen2_counter = timer_green/1000;
+			setTimer4(timer_green);
+			break;
+		case AUTO_RED:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,0);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
+			if(timer5_flag == 1){
+				setTimer5(1000);
+				timerred2_counter--;
+			}
+			if(timer4_flag == 1){
+				setTimer5(1000);
+				timergreen2_counter = timer_green/1000;
+				setTimer4(timer_green);
+				status2 = AUTO_GREEN;
+			}
+//			if(isButton1Pressed() == 1){
+//				status2 = MAN_RED;
+//				status = MAN_RED;
+//				setTimer2(500);
+//			}
+			break;
+		case AUTO_YELLOW:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,0);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
+			if(timer5_flag == 1){
+				setTimer5(1000);
+				timeryellow2_counter--;
+			}
+			if(timer4_flag == 1){
+				status2 = AUTO_RED;
+				setTimer5(1000);
+				timerred2_counter = timer_red/1000;
+				setTimer4(timer_red);
+			}
+//			if(isButton1Pressed() == 1){
+//				status2 = MAN_RED;
+//				setTimer2(500);
+//			}
+			break;
+		case AUTO_GREEN:
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
+			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,0);
+			if(timer5_flag == 1){
+				setTimer5(1000);
+				timergreen2_counter--;
+			}
+			if(timer4_flag == 1){
+				setTimer5(1000);
+				status2 = AUTO_YELLOW;
+				timeryellow2_counter = timer_yellow/1000;
+				setTimer4(timer_yellow);
+			}
+//			if(isButton1Pressed() == 1){
+//				status2 = MAN_RED;
+//				setTimer2(500);
+//			}
+			break;
+		}
 }

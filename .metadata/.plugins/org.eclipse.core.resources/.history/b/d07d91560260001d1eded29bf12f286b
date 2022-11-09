@@ -1,0 +1,22 @@
+/*
+ * display.c
+ *
+ *  Created on: Nov 9, 2022
+ *      Author: Hong Phat
+ */
+#include "display.h"
+void display(int mode){
+		switch(status){
+			case AUTO_RED:
+				if(mode == 1){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,0);
+					display7SEG(timer1_counter/10);
+				}
+				else if(mode == 2){
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
+					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,0);
+					display7SEG(timer1_counter%10);
+				}
+		}
+	}

@@ -21,11 +21,17 @@
 #define AUTO_GREEN 			3
 extern int counter;
 extern int status;
-extern int status ;
+extern int status2;
 extern int timer_red;
 extern int timer_yellow;
 extern int timer_green;
-
+extern int set_timer;
+extern int timerred_counter;
+extern int timeryellow_counter;
+extern int timergreen_counter;
+extern int timerred2_counter;
+extern int timeryellow2_counter;
+extern int timergreen2_counter;
 #define MAN_RED 12
 #define MAN_GREEN 13
 #define MAN_YELLOW 14

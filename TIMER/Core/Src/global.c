@@ -5,9 +5,17 @@
  *      Author: Hong Phat
  */
 #include "global.h"
-int counter;
 int status;
+int status2;
 int timer_red = 5000;
 int timer_yellow = 3000;
 int timer_green = 2000;
+int timerred_counter = 5;
+int timeryellow_counter = 3;
+int timergreen_counter = 2;
+
+int timerred2_counter = 5;
+int timeryellow2_counter = 3;
+int timergreen2_counter = 2;
+int set_timer = 0;
 
