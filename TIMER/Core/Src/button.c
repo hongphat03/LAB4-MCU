@@ -47,7 +47,6 @@ int isButton3Pressed(){
 }
 void subKeyProcess(int i){
 	//TODO
-	//HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
 	if(i==0){
 	button1_flag = 1;
 	}

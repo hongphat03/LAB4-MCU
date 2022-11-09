@@ -66,12 +66,12 @@ void Error_Handler(void);
 #define EN2_GPIO_Port GPIOA
 #define EN3_Pin GPIO_PIN_9
 #define EN3_GPIO_Port GPIOA
-#define RESET_Pin GPIO_PIN_7
-#define RESET_GPIO_Port GPIOB
-#define INC_Pin GPIO_PIN_8
-#define INC_GPIO_Port GPIOB
-#define DEC_Pin GPIO_PIN_9
-#define DEC_GPIO_Port GPIOB
+#define Button1_Pin GPIO_PIN_7
+#define Button1_GPIO_Port GPIOB
+#define Button2_Pin GPIO_PIN_8
+#define Button2_GPIO_Port GPIOB
+#define Button3_Pin GPIO_PIN_9
+#define Button3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -5,77 +5,12 @@
  *      Author: Hong Phat
  */
 #include "fsm_automatic.h"
-//void fsm_simple_buttons_run () {
-//		switch(status){
-//		case INIT9:
-//			counter = 10 ;
-//			setTimer(1000);
-//			status = NORMAL;
-//			break;
-//		case INIT0:
-//			counter = 1;
-//			setTimer(1000);
-//			status = NORMAL;
-//			break;
-//		case NORMAL:
-//			if(timer1_flag == 1){
-//				setTimer(1000);
-//				if(counter == 0){
-//					status = INIT9;
-//				}
-//				else{
-//				counter --;
-//				display7SEG();
-//				status = NORMAL;
-//				}
-//			}
-//			if( isButton1Pressed() == 1){
-//				status = INIT0;
-//			}
-//			if( button2_flag == 1){
-//				setTimer(1000);
-//				status = INC;
-//			}
-//			if(button3_flag == 1){
-//				setTimer(1000);
-//				status = DEC;
-//			}
-//			break;
-//		case INC:
-//				if(isButton2Pressed() == 1){
-//					counter++;
-//					if(counter == 10){
-//						counter = 0;
-//					}
-//					display7SEG();
-//					setTimer(1000);
-//				}
-//				else{
-//					if(timer1_flag == 1){
-//						status = NORMAL;
-//					}
-//				}
-//			break;
-//		case DEC:
-//			if(isButton3Pressed() == 1){
-//				counter--;
-//				if(counter == -1 ){
-//					counter = 9;
-//				}
-//				display7SEG();
-//			}
-//			else{
-//				if(timer1_flag == 1){
-//					status = NORMAL;
-//				}
-//			}
-//			break;
-//		default:
-//			break;
-//
-//		}
-//
-//}
+// setTimer: set timer for red, yellow, green led of road 1
+// setTimer2:
+// 			- every second timer counter of all led subtract 1 of road 1
+//			- set timer for led blinky when button1 is pressed
+// setTimer4: set timer for red, yellow, green led of road 2
+// setTimer5: every second timer counter of all led subtract 1 of road 2
 void fsm_automatic_run(){
 	switch(status){
 		case INIT:
@@ -92,22 +27,29 @@ void fsm_automatic_run(){
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
 			if(timer2_flag == 1){
+				// each second timer red counter subtract 1
 				setTimer2(1000);
 				timerred_counter--;
 			}
 			if(timer1_flag == 1){
+				// if timer red = 0, status is AUTO_GREEN
 				setTimer2(1000);
 				timergreen_counter = timer_green/1000;
 				setTimer(timer_green);
+				// set timer for green led
 				status = AUTO_GREEN;
 			}
 			if(isButton1Pressed() == 1){
+				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
 				status = MAN_RED;
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
-				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
+				// turn off two led red
+				set_timer = 1;
+				// value of time duration is in a range of 1 - 99
 				setTimer2(500);
+				// set timer for led blinky
 			}
 			break;
 		case AUTO_YELLOW:
@@ -115,22 +57,28 @@ void fsm_automatic_run(){
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,0);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
 			if(timer2_flag == 1){
+				// each second timer yellow counter subtract 1
 				setTimer2(1000);
 				timeryellow_counter--;
 			}
 			if(timer1_flag == 1){
+				// if timer yellow = 0, status is AUTO_RED
 				status = AUTO_RED;
 				setTimer2(1000);
 				timerred_counter = timer_red/1000;
 				setTimer(timer_red);
+				// set timer for red led
 			}
 			if(isButton1Pressed() == 1){
+				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
 				status = MAN_RED;
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
-				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
+				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
+				// turn off two led red
+				set_timer = 1;
 				setTimer2(500);
+				// set timer for led blinky
 			}
 			break;
 		case AUTO_GREEN:
@@ -138,22 +86,28 @@ void fsm_automatic_run(){
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,0);
 			if(timer2_flag == 1){
+				// each second timer green counter subtract 1
 				setTimer2(1000);
 				timergreen_counter--;
 			}
 			if(timer1_flag == 1){
+				// if timer green = 0, status is AUTO_YELLOW
 				status = AUTO_YELLOW;
 				setTimer2(1000);
 				timeryellow_counter = timer_yellow/1000;
 				setTimer(timer_yellow);
+				// set timer for red yellow
 			}
 			if(isButton1Pressed() == 1){
+				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
 				status = MAN_RED;
 				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
-				set_timer = 0;
+				// turn off two led red
+				set_timer = 1;
 				setTimer2(500);
+				// set timer for led blinky
 			}
 			break;
 	}
@@ -172,58 +126,54 @@ void fsm_automatic_run(){
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
 			if(timer5_flag == 1){
+				// each second timer red counter subtract 1
 				setTimer5(1000);
 				timerred2_counter--;
 			}
 			if(timer4_flag == 1){
+				// if timer red = 0, status is AUTO_GREEN
 				setTimer5(1000);
 				timergreen2_counter = timer_green/1000;
 				setTimer4(timer_green);
+				// set timer for green led
 				status2 = AUTO_GREEN;
 			}
-//			if(isButton1Pressed() == 1){
-//				status2 = MAN_RED;
-//				status = MAN_RED;
-//				setTimer2(500);
-//			}
 			break;
 		case AUTO_YELLOW:
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,0);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
 			if(timer5_flag == 1){
+				// each second timer yellow counter subtract 1
 				setTimer5(1000);
 				timeryellow2_counter--;
 			}
 			if(timer4_flag == 1){
+				// if timer yellow = 0, status is AUTO_RED
 				status2 = AUTO_RED;
 				setTimer5(1000);
 				timerred2_counter = timer_red/1000;
 				setTimer4(timer_red);
+				// set timer for red led
 			}
-//			if(isButton1Pressed() == 1){
-//				status2 = MAN_RED;
-//				setTimer2(500);
-//			}
 			break;
 		case AUTO_GREEN:
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,0);
 			if(timer5_flag == 1){
+				// each second timer green counter subtract 1
 				setTimer5(1000);
 				timergreen2_counter--;
 			}
 			if(timer4_flag == 1){
+				// if timer green = 0, status is AUTO_YELLOW
 				setTimer5(1000);
 				status2 = AUTO_YELLOW;
 				timeryellow2_counter = timer_yellow/1000;
 				setTimer4(timer_yellow);
+				// set timer for yelow led
 			}
-//			if(isButton1Pressed() == 1){
-//				status2 = MAN_RED;
-//				setTimer2(500);
-//			}
 			break;
 		}
 }
