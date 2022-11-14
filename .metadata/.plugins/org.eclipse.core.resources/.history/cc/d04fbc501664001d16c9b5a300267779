@@ -35,9 +35,9 @@ void display(int led){
 						display7SEG(timergreen_counter/10);
 					break;
 				// when mode is modify-time, use led1 to display time duration value
-				case MODIFY_RED:
-				case MODIFY_GREEN:
-				case MODIFY_YELLOW:
+				case MAN_RED:
+				case MAN_GREEN:
+				case MAN_YELLOW:
 						HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
 						HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
 						HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
@@ -72,9 +72,9 @@ void display(int led){
 						display7SEG(timergreen_counter%10);
 					break;
 					// when mode is modify-time, use led2 to display time duration value
-				case MODIFY_RED:
-				case MODIFY_GREEN:
-				case MODIFY_YELLOW:
+				case MAN_RED:
+				case MAN_GREEN:
+				case MAN_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
@@ -109,9 +109,9 @@ void display(int led){
 						display7SEG(timergreen2_counter/10);
 					break;
 				// when mode is modify-time, use led3 to display the mode
-				case MODIFY_RED:
-				case MODIFY_GREEN:
-				case MODIFY_YELLOW:
+				case MAN_RED:
+				case MAN_GREEN:
+				case MAN_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,0);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
@@ -146,21 +146,21 @@ void display(int led){
 						display7SEG(timergreen2_counter%10);
 					break;
 					// when mode is modify-time, use led4 to display the mode
-				case MODIFY_RED:
+				case MAN_RED:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
 					display7SEG(2);
 					break;
-				case MODIFY_YELLOW:
+				case MAN_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_6,1);
 					display7SEG(3);
 					break;
-				case MODIFY_GREEN:
+				case MAN_GREEN:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);

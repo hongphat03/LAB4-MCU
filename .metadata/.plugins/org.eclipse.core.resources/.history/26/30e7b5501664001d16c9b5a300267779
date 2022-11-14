@@ -5,7 +5,7 @@
  *      Author: Hong Phat
  */
 
-#include "fsm_manual.h"
+#include "fsm_MODIFYual.h"
 
 void fsm_modify_run(){
 	switch(status){

@@ -41,8 +41,8 @@ void fsm_automatic_run(){
 			}
 			if(isButton1Pressed() == 1){
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MODIFY_RED;
-				status2 = MODIFY_RED;
+				status = MAN_RED;
+				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
 				// turn off two led red
@@ -71,8 +71,8 @@ void fsm_automatic_run(){
 			}
 			if(isButton1Pressed() == 1){
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MODIFY_RED;
-				status2 = MODIFY_RED;
+				status = MAN_RED;
+				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
 				// turn off two led red
@@ -100,8 +100,8 @@ void fsm_automatic_run(){
 			}
 			if(isButton1Pressed() == 1){
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MODIFY_RED;
-				status2 = MODIFY_RED;
+				status = MAN_RED;
+				status2 = MAN_RED;
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 				HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,10);
 				// turn off two led red

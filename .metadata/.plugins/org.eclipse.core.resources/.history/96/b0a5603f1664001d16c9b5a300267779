@@ -1,5 +1,5 @@
 /*
- * fsm_MODIFYual.c
+ * fsm_manual.c
  *
  *  Created on: Oct 11, 2022
  *      Author: Hong Phat
@@ -7,9 +7,9 @@
 
 #include "fsm_manual.h"
 
-void fsm_modify_run(){
+void fsm_manual_run(){
 	switch(status){
-	case MODIFY_RED:
+	case MAN_RED:
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
@@ -25,8 +25,8 @@ void fsm_modify_run(){
 			setTimer2(500);
 			set_timer = 1;
 			// reset value of time duration
-			status = MODIFY_YELLOW;
-			status2 = MODIFY_YELLOW;
+			status = MAN_YELLOW;
+			status2 = MAN_YELLOW;
 		}
 		if(isButton2Pressed() == 1){
 			// if button2 is pressed, value of timer duration increase one second
@@ -38,7 +38,7 @@ void fsm_modify_run(){
 			timer_red = set_timer*1000;
 		}
 		break;
-	case MODIFY_YELLOW:
+	case MAN_YELLOW:
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
@@ -54,8 +54,8 @@ void fsm_modify_run(){
 				set_timer = 1;
 				// reset value of time duration
 				setTimer2(500);
-				status = MODIFY_GREEN;
-				status2 = MODIFY_GREEN;
+				status = MAN_GREEN;
+				status2 = MAN_GREEN;
 			}
 			if(isButton2Pressed() == 1){
 				// if button2 is pressed, value of timer duration increase one second
@@ -67,7 +67,7 @@ void fsm_modify_run(){
 				timer_yellow = set_timer*1000;
 			}
 			break;
-	case MODIFY_GREEN:
+	case MAN_GREEN:
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);

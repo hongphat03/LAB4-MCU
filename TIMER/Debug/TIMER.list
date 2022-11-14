@@ -39,11 +39,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_line   0000bfd6  00000000  00000000  000436a4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081fbb  00000000  00000000  0004f67a  2**0
+ 18 .debug_str    00081fc4  00000000  00000000  0004f67a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000d1635  2**0
+ 19 .comment      00000053  00000000  00000000  000d163e  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000284c  00000000  00000000  000d1688  2**2
+ 20 .debug_frame  0000284c  00000000  00000000  000d1694  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -945,9 +945,9 @@ void display(int led){
 					break;
  8000782:	e021      	b.n	80007c8 <display+0x184>
 				// when mode is modify-time, use led1 to display time duration value
-				case MAN_RED:
-				case MAN_GREEN:
-				case MAN_YELLOW:
+				case MODIFY_RED:
+				case MODIFY_GREEN:
+				case MODIFY_YELLOW:
 						HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);
  8000784:	2201      	movs	r2, #1
  8000786:	2180      	movs	r1, #128	; 0x80
@@ -1123,9 +1123,9 @@ void display(int led){
 					break;
  80008fc:	e026      	b.n	800094c <display+0x308>
 					// when mode is modify-time, use led2 to display time duration value
-				case MAN_RED:
-				case MAN_GREEN:
-				case MAN_YELLOW:
+				case MODIFY_RED:
+				case MODIFY_GREEN:
+				case MODIFY_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
  80008fe:	2201      	movs	r2, #1
  8000900:	f44f 7180 	mov.w	r1, #256	; 0x100
@@ -1299,9 +1299,9 @@ void display(int led){
 					break;
  8000a82:	e019      	b.n	8000ab8 <display+0x474>
 				// when mode is modify-time, use led3 to display the mode
-				case MAN_RED:
-				case MAN_GREEN:
-				case MAN_YELLOW:
+				case MODIFY_RED:
+				case MODIFY_GREEN:
+				case MODIFY_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,0);
  8000a84:	2200      	movs	r2, #0
  8000a86:	f44f 7180 	mov.w	r1, #256	; 0x100
@@ -1470,7 +1470,7 @@ void display(int led){
 					break;
  8000bec:	e04e      	b.n	8000c8c <display+0x648>
 					// when mode is modify-time, use led4 to display the mode
-				case MAN_RED:
+				case MODIFY_RED:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
  8000bee:	2201      	movs	r2, #1
  8000bf0:	f44f 7180 	mov.w	r1, #256	; 0x100
@@ -1496,7 +1496,7 @@ void display(int led){
  8000c1c:	f7ff fa96 	bl	800014c <display7SEG>
 					break;
  8000c20:	e034      	b.n	8000c8c <display+0x648>
-				case MAN_YELLOW:
+				case MODIFY_YELLOW:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
  8000c22:	2201      	movs	r2, #1
  8000c24:	f44f 7180 	mov.w	r1, #256	; 0x100
@@ -1522,7 +1522,7 @@ void display(int led){
  8000c50:	f7ff fa7c 	bl	800014c <display7SEG>
 					break;
  8000c54:	e01a      	b.n	8000c8c <display+0x648>
-				case MAN_GREEN:
+				case MODIFY_GREEN:
 					HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8,1);
  8000c56:	2201      	movs	r2, #1
  8000c58:	f44f 7180 	mov.w	r1, #256	; 0x100
@@ -1698,11 +1698,11 @@ void fsm_automatic_run(){
  8000d92:	2b01      	cmp	r3, #1
  8000d94:	f040 80c1 	bne.w	8000f1a <fsm_automatic_run+0x26a>
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MAN_RED;
+				status = MODIFY_RED;
  8000d98:	4b7f      	ldr	r3, [pc, #508]	; (8000f98 <fsm_automatic_run+0x2e8>)
  8000d9a:	220c      	movs	r2, #12
  8000d9c:	601a      	str	r2, [r3, #0]
-				status2 = MAN_RED;
+				status2 = MODIFY_RED;
  8000d9e:	4b87      	ldr	r3, [pc, #540]	; (8000fbc <fsm_automatic_run+0x30c>)
  8000da0:	220c      	movs	r2, #12
  8000da2:	601a      	str	r2, [r3, #0]
@@ -1797,11 +1797,11 @@ void fsm_automatic_run(){
  8000e3c:	2b01      	cmp	r3, #1
  8000e3e:	d16e      	bne.n	8000f1e <fsm_automatic_run+0x26e>
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MAN_RED;
+				status = MODIFY_RED;
  8000e40:	4b55      	ldr	r3, [pc, #340]	; (8000f98 <fsm_automatic_run+0x2e8>)
  8000e42:	220c      	movs	r2, #12
  8000e44:	601a      	str	r2, [r3, #0]
-				status2 = MAN_RED;
+				status2 = MODIFY_RED;
  8000e46:	4b5d      	ldr	r3, [pc, #372]	; (8000fbc <fsm_automatic_run+0x30c>)
  8000e48:	220c      	movs	r2, #12
  8000e4a:	601a      	str	r2, [r3, #0]
@@ -1895,11 +1895,11 @@ void fsm_automatic_run(){
  8000ee4:	2b01      	cmp	r3, #1
  8000ee6:	d11c      	bne.n	8000f22 <fsm_automatic_run+0x272>
 				// if button is pressed, mode is changed to mode 2 ( modify time for red led)
-				status = MAN_RED;
+				status = MODIFY_RED;
  8000ee8:	4b2b      	ldr	r3, [pc, #172]	; (8000f98 <fsm_automatic_run+0x2e8>)
  8000eea:	220c      	movs	r2, #12
  8000eec:	601a      	str	r2, [r3, #0]
-				status2 = MAN_RED;
+				status2 = MODIFY_RED;
  8000eee:	4b33      	ldr	r3, [pc, #204]	; (8000fbc <fsm_automatic_run+0x30c>)
  8000ef0:	220c      	movs	r2, #12
  8000ef2:	601a      	str	r2, [r3, #0]
@@ -2216,306 +2216,306 @@ void fsm_automatic_run(){
  8001160:	20000034 	.word	0x20000034
  8001164:	20000038 	.word	0x20000038
 
-08001168 <fsm_manual_run>:
+08001168 <fsm_modify_run>:
  *      Author: Hong Phat
  */
 
 #include "fsm_manual.h"
 
-void fsm_manual_run(){
+void fsm_modify_run(){
  8001168:	b580      	push	{r7, lr}
  800116a:	af00      	add	r7, sp, #0
 	switch(status){
- 800116c:	4b8d      	ldr	r3, [pc, #564]	; (80013a4 <fsm_manual_run+0x23c>)
+ 800116c:	4b8d      	ldr	r3, [pc, #564]	; (80013a4 <fsm_modify_run+0x23c>)
  800116e:	681b      	ldr	r3, [r3, #0]
  8001170:	2b0e      	cmp	r3, #14
- 8001172:	d061      	beq.n	8001238 <fsm_manual_run+0xd0>
+ 8001172:	d061      	beq.n	8001238 <fsm_modify_run+0xd0>
  8001174:	2b0e      	cmp	r3, #14
- 8001176:	f300 810b 	bgt.w	8001390 <fsm_manual_run+0x228>
+ 8001176:	f300 810b 	bgt.w	8001390 <fsm_modify_run+0x228>
  800117a:	2b0c      	cmp	r3, #12
- 800117c:	d003      	beq.n	8001186 <fsm_manual_run+0x1e>
+ 800117c:	d003      	beq.n	8001186 <fsm_modify_run+0x1e>
  800117e:	2b0d      	cmp	r3, #13
- 8001180:	f000 80b2 	beq.w	80012e8 <fsm_manual_run+0x180>
+ 8001180:	f000 80b2 	beq.w	80012e8 <fsm_modify_run+0x180>
 			// if button3 is pressed, set the value
 			timer_green= set_timer*1000;
 		}
 		break;
 	default:
 		break;
- 8001184:	e104      	b.n	8001390 <fsm_manual_run+0x228>
+ 8001184:	e104      	b.n	8001390 <fsm_modify_run+0x228>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
  8001186:	2201      	movs	r2, #1
  8001188:	2110      	movs	r1, #16
- 800118a:	4887      	ldr	r0, [pc, #540]	; (80013a8 <fsm_manual_run+0x240>)
+ 800118a:	4887      	ldr	r0, [pc, #540]	; (80013a8 <fsm_modify_run+0x240>)
  800118c:	f000 fef3 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
  8001190:	2201      	movs	r2, #1
  8001192:	2120      	movs	r1, #32
- 8001194:	4884      	ldr	r0, [pc, #528]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001194:	4884      	ldr	r0, [pc, #528]	; (80013a8 <fsm_modify_run+0x240>)
  8001196:	f000 feee 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
  800119a:	2201      	movs	r2, #1
  800119c:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 80011a0:	4881      	ldr	r0, [pc, #516]	; (80013a8 <fsm_manual_run+0x240>)
+ 80011a0:	4881      	ldr	r0, [pc, #516]	; (80013a8 <fsm_modify_run+0x240>)
  80011a2:	f000 fee8 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
  80011a6:	2201      	movs	r2, #1
  80011a8:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 80011ac:	487e      	ldr	r0, [pc, #504]	; (80013a8 <fsm_manual_run+0x240>)
+ 80011ac:	487e      	ldr	r0, [pc, #504]	; (80013a8 <fsm_modify_run+0x240>)
  80011ae:	f000 fee2 	bl	8001f76 <HAL_GPIO_WritePin>
 		if(timer2_flag == 1){
- 80011b2:	4b7e      	ldr	r3, [pc, #504]	; (80013ac <fsm_manual_run+0x244>)
+ 80011b2:	4b7e      	ldr	r3, [pc, #504]	; (80013ac <fsm_modify_run+0x244>)
  80011b4:	681b      	ldr	r3, [r3, #0]
  80011b6:	2b01      	cmp	r3, #1
- 80011b8:	d10c      	bne.n	80011d4 <fsm_manual_run+0x6c>
+ 80011b8:	d10c      	bne.n	80011d4 <fsm_modify_run+0x6c>
 			setTimer2(500);
  80011ba:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  80011be:	f000 fa53 	bl	8001668 <setTimer2>
 			HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_3);
  80011c2:	2108      	movs	r1, #8
- 80011c4:	4878      	ldr	r0, [pc, #480]	; (80013a8 <fsm_manual_run+0x240>)
+ 80011c4:	4878      	ldr	r0, [pc, #480]	; (80013a8 <fsm_modify_run+0x240>)
  80011c6:	f000 feee 	bl	8001fa6 <HAL_GPIO_TogglePin>
 			HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_10);
  80011ca:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 80011ce:	4876      	ldr	r0, [pc, #472]	; (80013a8 <fsm_manual_run+0x240>)
+ 80011ce:	4876      	ldr	r0, [pc, #472]	; (80013a8 <fsm_modify_run+0x240>)
  80011d0:	f000 fee9 	bl	8001fa6 <HAL_GPIO_TogglePin>
 		if(isButton1Pressed() == 1){
  80011d4:	f7ff f940 	bl	8000458 <isButton1Pressed>
  80011d8:	4603      	mov	r3, r0
  80011da:	2b01      	cmp	r3, #1
- 80011dc:	d10c      	bne.n	80011f8 <fsm_manual_run+0x90>
+ 80011dc:	d10c      	bne.n	80011f8 <fsm_modify_run+0x90>
 			setTimer2(500);
  80011de:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  80011e2:	f000 fa41 	bl	8001668 <setTimer2>
 			set_timer = 1;
- 80011e6:	4b72      	ldr	r3, [pc, #456]	; (80013b0 <fsm_manual_run+0x248>)
+ 80011e6:	4b72      	ldr	r3, [pc, #456]	; (80013b0 <fsm_modify_run+0x248>)
  80011e8:	2201      	movs	r2, #1
  80011ea:	601a      	str	r2, [r3, #0]
-			status = MAN_YELLOW;
- 80011ec:	4b6d      	ldr	r3, [pc, #436]	; (80013a4 <fsm_manual_run+0x23c>)
+			status = MODIFY_YELLOW;
+ 80011ec:	4b6d      	ldr	r3, [pc, #436]	; (80013a4 <fsm_modify_run+0x23c>)
  80011ee:	220e      	movs	r2, #14
  80011f0:	601a      	str	r2, [r3, #0]
-			status2 = MAN_YELLOW;
- 80011f2:	4b70      	ldr	r3, [pc, #448]	; (80013b4 <fsm_manual_run+0x24c>)
+			status2 = MODIFY_YELLOW;
+ 80011f2:	4b70      	ldr	r3, [pc, #448]	; (80013b4 <fsm_modify_run+0x24c>)
  80011f4:	220e      	movs	r2, #14
  80011f6:	601a      	str	r2, [r3, #0]
 		if(isButton2Pressed() == 1){
  80011f8:	f7ff f940 	bl	800047c <isButton2Pressed>
  80011fc:	4603      	mov	r3, r0
  80011fe:	2b01      	cmp	r3, #1
- 8001200:	d10b      	bne.n	800121a <fsm_manual_run+0xb2>
+ 8001200:	d10b      	bne.n	800121a <fsm_modify_run+0xb2>
 			set_timer++;
- 8001202:	4b6b      	ldr	r3, [pc, #428]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001202:	4b6b      	ldr	r3, [pc, #428]	; (80013b0 <fsm_modify_run+0x248>)
  8001204:	681b      	ldr	r3, [r3, #0]
  8001206:	3301      	adds	r3, #1
- 8001208:	4a69      	ldr	r2, [pc, #420]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001208:	4a69      	ldr	r2, [pc, #420]	; (80013b0 <fsm_modify_run+0x248>)
  800120a:	6013      	str	r3, [r2, #0]
 			if(set_timer > 99) set_timer = 1;
- 800120c:	4b68      	ldr	r3, [pc, #416]	; (80013b0 <fsm_manual_run+0x248>)
+ 800120c:	4b68      	ldr	r3, [pc, #416]	; (80013b0 <fsm_modify_run+0x248>)
  800120e:	681b      	ldr	r3, [r3, #0]
  8001210:	2b63      	cmp	r3, #99	; 0x63
- 8001212:	dd02      	ble.n	800121a <fsm_manual_run+0xb2>
- 8001214:	4b66      	ldr	r3, [pc, #408]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001212:	dd02      	ble.n	800121a <fsm_modify_run+0xb2>
+ 8001214:	4b66      	ldr	r3, [pc, #408]	; (80013b0 <fsm_modify_run+0x248>)
  8001216:	2201      	movs	r2, #1
  8001218:	601a      	str	r2, [r3, #0]
 		if(isButton3Pressed() == 1){
  800121a:	f7ff f941 	bl	80004a0 <isButton3Pressed>
  800121e:	4603      	mov	r3, r0
  8001220:	2b01      	cmp	r3, #1
- 8001222:	f040 80b7 	bne.w	8001394 <fsm_manual_run+0x22c>
+ 8001222:	f040 80b7 	bne.w	8001394 <fsm_modify_run+0x22c>
 			timer_red = set_timer*1000;
- 8001226:	4b62      	ldr	r3, [pc, #392]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001226:	4b62      	ldr	r3, [pc, #392]	; (80013b0 <fsm_modify_run+0x248>)
  8001228:	681b      	ldr	r3, [r3, #0]
  800122a:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
  800122e:	fb02 f303 	mul.w	r3, r2, r3
- 8001232:	4a61      	ldr	r2, [pc, #388]	; (80013b8 <fsm_manual_run+0x250>)
+ 8001232:	4a61      	ldr	r2, [pc, #388]	; (80013b8 <fsm_modify_run+0x250>)
  8001234:	6013      	str	r3, [r2, #0]
 		break;
- 8001236:	e0ad      	b.n	8001394 <fsm_manual_run+0x22c>
+ 8001236:	e0ad      	b.n	8001394 <fsm_modify_run+0x22c>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
  8001238:	2201      	movs	r2, #1
  800123a:	2108      	movs	r1, #8
- 800123c:	485a      	ldr	r0, [pc, #360]	; (80013a8 <fsm_manual_run+0x240>)
+ 800123c:	485a      	ldr	r0, [pc, #360]	; (80013a8 <fsm_modify_run+0x240>)
  800123e:	f000 fe9a 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,1);
  8001242:	2201      	movs	r2, #1
  8001244:	2120      	movs	r1, #32
- 8001246:	4858      	ldr	r0, [pc, #352]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001246:	4858      	ldr	r0, [pc, #352]	; (80013a8 <fsm_modify_run+0x240>)
  8001248:	f000 fe95 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
  800124c:	2201      	movs	r2, #1
  800124e:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 8001252:	4855      	ldr	r0, [pc, #340]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001252:	4855      	ldr	r0, [pc, #340]	; (80013a8 <fsm_modify_run+0x240>)
  8001254:	f000 fe8f 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12,1);
  8001258:	2201      	movs	r2, #1
  800125a:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 800125e:	4852      	ldr	r0, [pc, #328]	; (80013a8 <fsm_manual_run+0x240>)
+ 800125e:	4852      	ldr	r0, [pc, #328]	; (80013a8 <fsm_modify_run+0x240>)
  8001260:	f000 fe89 	bl	8001f76 <HAL_GPIO_WritePin>
 			if(timer2_flag == 1){
- 8001264:	4b51      	ldr	r3, [pc, #324]	; (80013ac <fsm_manual_run+0x244>)
+ 8001264:	4b51      	ldr	r3, [pc, #324]	; (80013ac <fsm_modify_run+0x244>)
  8001266:	681b      	ldr	r3, [r3, #0]
  8001268:	2b01      	cmp	r3, #1
- 800126a:	d10c      	bne.n	8001286 <fsm_manual_run+0x11e>
+ 800126a:	d10c      	bne.n	8001286 <fsm_modify_run+0x11e>
 				setTimer2(500);
  800126c:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  8001270:	f000 f9fa 	bl	8001668 <setTimer2>
 				HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4);
  8001274:	2110      	movs	r1, #16
- 8001276:	484c      	ldr	r0, [pc, #304]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001276:	484c      	ldr	r0, [pc, #304]	; (80013a8 <fsm_modify_run+0x240>)
  8001278:	f000 fe95 	bl	8001fa6 <HAL_GPIO_TogglePin>
 				HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
  800127c:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 8001280:	4849      	ldr	r0, [pc, #292]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001280:	4849      	ldr	r0, [pc, #292]	; (80013a8 <fsm_modify_run+0x240>)
  8001282:	f000 fe90 	bl	8001fa6 <HAL_GPIO_TogglePin>
 			if(isButton1Pressed() == 1){
  8001286:	f7ff f8e7 	bl	8000458 <isButton1Pressed>
  800128a:	4603      	mov	r3, r0
  800128c:	2b01      	cmp	r3, #1
- 800128e:	d10c      	bne.n	80012aa <fsm_manual_run+0x142>
+ 800128e:	d10c      	bne.n	80012aa <fsm_modify_run+0x142>
 				set_timer = 1;
- 8001290:	4b47      	ldr	r3, [pc, #284]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001290:	4b47      	ldr	r3, [pc, #284]	; (80013b0 <fsm_modify_run+0x248>)
  8001292:	2201      	movs	r2, #1
  8001294:	601a      	str	r2, [r3, #0]
 				setTimer2(500);
  8001296:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  800129a:	f000 f9e5 	bl	8001668 <setTimer2>
-				status = MAN_GREEN;
- 800129e:	4b41      	ldr	r3, [pc, #260]	; (80013a4 <fsm_manual_run+0x23c>)
+				status = MODIFY_GREEN;
+ 800129e:	4b41      	ldr	r3, [pc, #260]	; (80013a4 <fsm_modify_run+0x23c>)
  80012a0:	220d      	movs	r2, #13
  80012a2:	601a      	str	r2, [r3, #0]
-				status2 = MAN_GREEN;
- 80012a4:	4b43      	ldr	r3, [pc, #268]	; (80013b4 <fsm_manual_run+0x24c>)
+				status2 = MODIFY_GREEN;
+ 80012a4:	4b43      	ldr	r3, [pc, #268]	; (80013b4 <fsm_modify_run+0x24c>)
  80012a6:	220d      	movs	r2, #13
  80012a8:	601a      	str	r2, [r3, #0]
 			if(isButton2Pressed() == 1){
  80012aa:	f7ff f8e7 	bl	800047c <isButton2Pressed>
  80012ae:	4603      	mov	r3, r0
  80012b0:	2b01      	cmp	r3, #1
- 80012b2:	d10b      	bne.n	80012cc <fsm_manual_run+0x164>
+ 80012b2:	d10b      	bne.n	80012cc <fsm_modify_run+0x164>
 				set_timer++;
- 80012b4:	4b3e      	ldr	r3, [pc, #248]	; (80013b0 <fsm_manual_run+0x248>)
+ 80012b4:	4b3e      	ldr	r3, [pc, #248]	; (80013b0 <fsm_modify_run+0x248>)
  80012b6:	681b      	ldr	r3, [r3, #0]
  80012b8:	3301      	adds	r3, #1
- 80012ba:	4a3d      	ldr	r2, [pc, #244]	; (80013b0 <fsm_manual_run+0x248>)
+ 80012ba:	4a3d      	ldr	r2, [pc, #244]	; (80013b0 <fsm_modify_run+0x248>)
  80012bc:	6013      	str	r3, [r2, #0]
 				if(set_timer > 99) set_timer = 1;
- 80012be:	4b3c      	ldr	r3, [pc, #240]	; (80013b0 <fsm_manual_run+0x248>)
+ 80012be:	4b3c      	ldr	r3, [pc, #240]	; (80013b0 <fsm_modify_run+0x248>)
  80012c0:	681b      	ldr	r3, [r3, #0]
  80012c2:	2b63      	cmp	r3, #99	; 0x63
- 80012c4:	dd02      	ble.n	80012cc <fsm_manual_run+0x164>
- 80012c6:	4b3a      	ldr	r3, [pc, #232]	; (80013b0 <fsm_manual_run+0x248>)
+ 80012c4:	dd02      	ble.n	80012cc <fsm_modify_run+0x164>
+ 80012c6:	4b3a      	ldr	r3, [pc, #232]	; (80013b0 <fsm_modify_run+0x248>)
  80012c8:	2201      	movs	r2, #1
  80012ca:	601a      	str	r2, [r3, #0]
 			if(isButton3Pressed() == 1){
  80012cc:	f7ff f8e8 	bl	80004a0 <isButton3Pressed>
  80012d0:	4603      	mov	r3, r0
  80012d2:	2b01      	cmp	r3, #1
- 80012d4:	d160      	bne.n	8001398 <fsm_manual_run+0x230>
+ 80012d4:	d160      	bne.n	8001398 <fsm_modify_run+0x230>
 				timer_yellow = set_timer*1000;
- 80012d6:	4b36      	ldr	r3, [pc, #216]	; (80013b0 <fsm_manual_run+0x248>)
+ 80012d6:	4b36      	ldr	r3, [pc, #216]	; (80013b0 <fsm_modify_run+0x248>)
  80012d8:	681b      	ldr	r3, [r3, #0]
  80012da:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
  80012de:	fb02 f303 	mul.w	r3, r2, r3
- 80012e2:	4a36      	ldr	r2, [pc, #216]	; (80013bc <fsm_manual_run+0x254>)
+ 80012e2:	4a36      	ldr	r2, [pc, #216]	; (80013bc <fsm_modify_run+0x254>)
  80012e4:	6013      	str	r3, [r2, #0]
 			break;
- 80012e6:	e057      	b.n	8001398 <fsm_manual_run+0x230>
+ 80012e6:	e057      	b.n	8001398 <fsm_modify_run+0x230>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_3,1);
  80012e8:	2201      	movs	r2, #1
  80012ea:	2108      	movs	r1, #8
- 80012ec:	482e      	ldr	r0, [pc, #184]	; (80013a8 <fsm_manual_run+0x240>)
+ 80012ec:	482e      	ldr	r0, [pc, #184]	; (80013a8 <fsm_modify_run+0x240>)
  80012ee:	f000 fe42 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
  80012f2:	2201      	movs	r2, #1
  80012f4:	2110      	movs	r1, #16
- 80012f6:	482c      	ldr	r0, [pc, #176]	; (80013a8 <fsm_manual_run+0x240>)
+ 80012f6:	482c      	ldr	r0, [pc, #176]	; (80013a8 <fsm_modify_run+0x240>)
  80012f8:	f000 fe3d 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
  80012fc:	2201      	movs	r2, #1
  80012fe:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 8001302:	4829      	ldr	r0, [pc, #164]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001302:	4829      	ldr	r0, [pc, #164]	; (80013a8 <fsm_modify_run+0x240>)
  8001304:	f000 fe37 	bl	8001f76 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
  8001308:	2201      	movs	r2, #1
  800130a:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 800130e:	4826      	ldr	r0, [pc, #152]	; (80013a8 <fsm_manual_run+0x240>)
+ 800130e:	4826      	ldr	r0, [pc, #152]	; (80013a8 <fsm_modify_run+0x240>)
  8001310:	f000 fe31 	bl	8001f76 <HAL_GPIO_WritePin>
 		if(timer2_flag == 1){
- 8001314:	4b25      	ldr	r3, [pc, #148]	; (80013ac <fsm_manual_run+0x244>)
+ 8001314:	4b25      	ldr	r3, [pc, #148]	; (80013ac <fsm_modify_run+0x244>)
  8001316:	681b      	ldr	r3, [r3, #0]
  8001318:	2b01      	cmp	r3, #1
- 800131a:	d10c      	bne.n	8001336 <fsm_manual_run+0x1ce>
+ 800131a:	d10c      	bne.n	8001336 <fsm_modify_run+0x1ce>
 			setTimer2(500);
  800131c:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  8001320:	f000 f9a2 	bl	8001668 <setTimer2>
 			HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
  8001324:	2120      	movs	r1, #32
- 8001326:	4820      	ldr	r0, [pc, #128]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001326:	4820      	ldr	r0, [pc, #128]	; (80013a8 <fsm_modify_run+0x240>)
  8001328:	f000 fe3d 	bl	8001fa6 <HAL_GPIO_TogglePin>
 			HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_12);
  800132c:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 8001330:	481d      	ldr	r0, [pc, #116]	; (80013a8 <fsm_manual_run+0x240>)
+ 8001330:	481d      	ldr	r0, [pc, #116]	; (80013a8 <fsm_modify_run+0x240>)
  8001332:	f000 fe38 	bl	8001fa6 <HAL_GPIO_TogglePin>
 		if(isButton1Pressed() == 1){
  8001336:	f7ff f88f 	bl	8000458 <isButton1Pressed>
  800133a:	4603      	mov	r3, r0
  800133c:	2b01      	cmp	r3, #1
- 800133e:	d108      	bne.n	8001352 <fsm_manual_run+0x1ea>
+ 800133e:	d108      	bne.n	8001352 <fsm_modify_run+0x1ea>
 			set_timer = 1;
- 8001340:	4b1b      	ldr	r3, [pc, #108]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001340:	4b1b      	ldr	r3, [pc, #108]	; (80013b0 <fsm_modify_run+0x248>)
  8001342:	2201      	movs	r2, #1
  8001344:	601a      	str	r2, [r3, #0]
 			status = INIT;
- 8001346:	4b17      	ldr	r3, [pc, #92]	; (80013a4 <fsm_manual_run+0x23c>)
+ 8001346:	4b17      	ldr	r3, [pc, #92]	; (80013a4 <fsm_modify_run+0x23c>)
  8001348:	2200      	movs	r2, #0
  800134a:	601a      	str	r2, [r3, #0]
 			status2 = INIT;
- 800134c:	4b19      	ldr	r3, [pc, #100]	; (80013b4 <fsm_manual_run+0x24c>)
+ 800134c:	4b19      	ldr	r3, [pc, #100]	; (80013b4 <fsm_modify_run+0x24c>)
  800134e:	2200      	movs	r2, #0
  8001350:	601a      	str	r2, [r3, #0]
 		if(isButton2Pressed() == 1){
  8001352:	f7ff f893 	bl	800047c <isButton2Pressed>
  8001356:	4603      	mov	r3, r0
  8001358:	2b01      	cmp	r3, #1
- 800135a:	d10b      	bne.n	8001374 <fsm_manual_run+0x20c>
+ 800135a:	d10b      	bne.n	8001374 <fsm_modify_run+0x20c>
 			set_timer++;
- 800135c:	4b14      	ldr	r3, [pc, #80]	; (80013b0 <fsm_manual_run+0x248>)
+ 800135c:	4b14      	ldr	r3, [pc, #80]	; (80013b0 <fsm_modify_run+0x248>)
  800135e:	681b      	ldr	r3, [r3, #0]
  8001360:	3301      	adds	r3, #1
- 8001362:	4a13      	ldr	r2, [pc, #76]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001362:	4a13      	ldr	r2, [pc, #76]	; (80013b0 <fsm_modify_run+0x248>)
  8001364:	6013      	str	r3, [r2, #0]
 			if(set_timer > 99) set_timer = 1;
- 8001366:	4b12      	ldr	r3, [pc, #72]	; (80013b0 <fsm_manual_run+0x248>)
+ 8001366:	4b12      	ldr	r3, [pc, #72]	; (80013b0 <fsm_modify_run+0x248>)
  8001368:	681b      	ldr	r3, [r3, #0]
  800136a:	2b63      	cmp	r3, #99	; 0x63
- 800136c:	dd02      	ble.n	8001374 <fsm_manual_run+0x20c>
- 800136e:	4b10      	ldr	r3, [pc, #64]	; (80013b0 <fsm_manual_run+0x248>)
+ 800136c:	dd02      	ble.n	8001374 <fsm_modify_run+0x20c>
+ 800136e:	4b10      	ldr	r3, [pc, #64]	; (80013b0 <fsm_modify_run+0x248>)
  8001370:	2201      	movs	r2, #1
  8001372:	601a      	str	r2, [r3, #0]
 		if(isButton3Pressed() == 1){
  8001374:	f7ff f894 	bl	80004a0 <isButton3Pressed>
  8001378:	4603      	mov	r3, r0
  800137a:	2b01      	cmp	r3, #1
- 800137c:	d10e      	bne.n	800139c <fsm_manual_run+0x234>
+ 800137c:	d10e      	bne.n	800139c <fsm_modify_run+0x234>
 			timer_green= set_timer*1000;
- 800137e:	4b0c      	ldr	r3, [pc, #48]	; (80013b0 <fsm_manual_run+0x248>)
+ 800137e:	4b0c      	ldr	r3, [pc, #48]	; (80013b0 <fsm_modify_run+0x248>)
  8001380:	681b      	ldr	r3, [r3, #0]
  8001382:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
  8001386:	fb02 f303 	mul.w	r3, r2, r3
- 800138a:	4a0d      	ldr	r2, [pc, #52]	; (80013c0 <fsm_manual_run+0x258>)
+ 800138a:	4a0d      	ldr	r2, [pc, #52]	; (80013c0 <fsm_modify_run+0x258>)
  800138c:	6013      	str	r3, [r2, #0]
 		break;
- 800138e:	e005      	b.n	800139c <fsm_manual_run+0x234>
+ 800138e:	e005      	b.n	800139c <fsm_modify_run+0x234>
 		break;
  8001390:	bf00      	nop
- 8001392:	e004      	b.n	800139e <fsm_manual_run+0x236>
+ 8001392:	e004      	b.n	800139e <fsm_modify_run+0x236>
 		break;
  8001394:	bf00      	nop
- 8001396:	e002      	b.n	800139e <fsm_manual_run+0x236>
+ 8001396:	e002      	b.n	800139e <fsm_modify_run+0x236>
 			break;
  8001398:	bf00      	nop
- 800139a:	e000      	b.n	800139e <fsm_manual_run+0x236>
+ 800139a:	e000      	b.n	800139e <fsm_modify_run+0x236>
 		break;
  800139c:	bf00      	nop
 	}
@@ -2613,8 +2613,8 @@ int main(void)
 	  }
 	  fsm_automatic_run();  // fsm of normal mode
  800141a:	f7ff fc49 	bl	8000cb0 <fsm_automatic_run>
-	  fsm_manual_run();		// fsm of modify time mode
- 800141e:	f7ff fea3 	bl	8001168 <fsm_manual_run>
+	  fsm_modify_run();		// fsm of modify time mode
+ 800141e:	f7ff fea3 	bl	8001168 <fsm_modify_run>
 	  if(timer3_flag == 1){
  8001422:	e7e8      	b.n	80013f6 <main+0x32>
  8001424:	200000c4 	.word	0x200000c4

@@ -32,9 +32,9 @@ extern int timergreen_counter;
 extern int timerred2_counter;
 extern int timeryellow2_counter;
 extern int timergreen2_counter;
-#define MODIFY_RED 12
-#define MODIFY_GREEN 13
-#define MODIFY_YELLOW 14
+#define MAN_RED 12
+#define MAN_GREEN 13
+#define MAN_YELLOW 14
 
 
 #endif /* INC_GLOBAL_H_ */

@@ -109,7 +109,7 @@ int main(void)
 	  if(led > 4) led = 1;
 	  }
 	  fsm_automatic_run();  // fsm of normal mode
-	  fsm_modify_run();		// fsm of modify time mode
+	  fsm_manual_run();		// fsm of modify time mode
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
