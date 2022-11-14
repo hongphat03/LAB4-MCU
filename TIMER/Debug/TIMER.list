@@ -2287,9 +2287,9 @@ void fsm_manual_run(){
 			setTimer2(500);
  80011de:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  80011e2:	f000 fa41 	bl	8001668 <setTimer2>
-			set_timer = 0;
+			set_timer = 1;
  80011e6:	4b72      	ldr	r3, [pc, #456]	; (80013b0 <fsm_manual_run+0x248>)
- 80011e8:	2200      	movs	r2, #0
+ 80011e8:	2201      	movs	r2, #1
  80011ea:	601a      	str	r2, [r3, #0]
 			status = MAN_YELLOW;
  80011ec:	4b6d      	ldr	r3, [pc, #436]	; (80013a4 <fsm_manual_run+0x23c>)
@@ -2310,13 +2310,13 @@ void fsm_manual_run(){
  8001206:	3301      	adds	r3, #1
  8001208:	4a69      	ldr	r2, [pc, #420]	; (80013b0 <fsm_manual_run+0x248>)
  800120a:	6013      	str	r3, [r2, #0]
-			if(set_timer > 99) set_timer = 0;
+			if(set_timer > 99) set_timer = 1;
  800120c:	4b68      	ldr	r3, [pc, #416]	; (80013b0 <fsm_manual_run+0x248>)
  800120e:	681b      	ldr	r3, [r3, #0]
  8001210:	2b63      	cmp	r3, #99	; 0x63
  8001212:	dd02      	ble.n	800121a <fsm_manual_run+0xb2>
  8001214:	4b66      	ldr	r3, [pc, #408]	; (80013b0 <fsm_manual_run+0x248>)
- 8001216:	2200      	movs	r2, #0
+ 8001216:	2201      	movs	r2, #1
  8001218:	601a      	str	r2, [r3, #0]
 		if(isButton3Pressed() == 1){
  800121a:	f7ff f941 	bl	80004a0 <isButton3Pressed>
@@ -2373,9 +2373,9 @@ void fsm_manual_run(){
  800128a:	4603      	mov	r3, r0
  800128c:	2b01      	cmp	r3, #1
  800128e:	d10c      	bne.n	80012aa <fsm_manual_run+0x142>
-				set_timer = 0;
+				set_timer = 1;
  8001290:	4b47      	ldr	r3, [pc, #284]	; (80013b0 <fsm_manual_run+0x248>)
- 8001292:	2200      	movs	r2, #0
+ 8001292:	2201      	movs	r2, #1
  8001294:	601a      	str	r2, [r3, #0]
 				setTimer2(500);
  8001296:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
@@ -2399,13 +2399,13 @@ void fsm_manual_run(){
  80012b8:	3301      	adds	r3, #1
  80012ba:	4a3d      	ldr	r2, [pc, #244]	; (80013b0 <fsm_manual_run+0x248>)
  80012bc:	6013      	str	r3, [r2, #0]
-				if(set_timer > 99) set_timer = 0;
+				if(set_timer > 99) set_timer = 1;
  80012be:	4b3c      	ldr	r3, [pc, #240]	; (80013b0 <fsm_manual_run+0x248>)
  80012c0:	681b      	ldr	r3, [r3, #0]
  80012c2:	2b63      	cmp	r3, #99	; 0x63
  80012c4:	dd02      	ble.n	80012cc <fsm_manual_run+0x164>
  80012c6:	4b3a      	ldr	r3, [pc, #232]	; (80013b0 <fsm_manual_run+0x248>)
- 80012c8:	2200      	movs	r2, #0
+ 80012c8:	2201      	movs	r2, #1
  80012ca:	601a      	str	r2, [r3, #0]
 			if(isButton3Pressed() == 1){
  80012cc:	f7ff f8e8 	bl	80004a0 <isButton3Pressed>
@@ -2462,9 +2462,9 @@ void fsm_manual_run(){
  800133a:	4603      	mov	r3, r0
  800133c:	2b01      	cmp	r3, #1
  800133e:	d108      	bne.n	8001352 <fsm_manual_run+0x1ea>
-			set_timer = 0;
+			set_timer = 1;
  8001340:	4b1b      	ldr	r3, [pc, #108]	; (80013b0 <fsm_manual_run+0x248>)
- 8001342:	2200      	movs	r2, #0
+ 8001342:	2201      	movs	r2, #1
  8001344:	601a      	str	r2, [r3, #0]
 			status = INIT;
  8001346:	4b17      	ldr	r3, [pc, #92]	; (80013a4 <fsm_manual_run+0x23c>)
@@ -2485,13 +2485,13 @@ void fsm_manual_run(){
  8001360:	3301      	adds	r3, #1
  8001362:	4a13      	ldr	r2, [pc, #76]	; (80013b0 <fsm_manual_run+0x248>)
  8001364:	6013      	str	r3, [r2, #0]
-			if(set_timer > 99) set_timer = 0;
+			if(set_timer > 99) set_timer = 1;
  8001366:	4b12      	ldr	r3, [pc, #72]	; (80013b0 <fsm_manual_run+0x248>)
  8001368:	681b      	ldr	r3, [r3, #0]
  800136a:	2b63      	cmp	r3, #99	; 0x63
  800136c:	dd02      	ble.n	8001374 <fsm_manual_run+0x20c>
  800136e:	4b10      	ldr	r3, [pc, #64]	; (80013b0 <fsm_manual_run+0x248>)
- 8001370:	2200      	movs	r2, #0
+ 8001370:	2201      	movs	r2, #1
  8001372:	601a      	str	r2, [r3, #0]
 		if(isButton3Pressed() == 1){
  8001374:	f7ff f894 	bl	80004a0 <isButton3Pressed>

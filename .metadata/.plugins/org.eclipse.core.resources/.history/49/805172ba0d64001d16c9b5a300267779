@@ -23,7 +23,7 @@ void fsm_manual_run(){
 		if(isButton1Pressed() == 1){
 			// if button is pressed, mode is changed to mode 3 ( modify time for yellow led)
 			setTimer2(500);
-			set_timer = 1;
+			set_timer = 0;
 			// reset value of time duration
 			status = MAN_YELLOW;
 			status2 = MAN_YELLOW;
@@ -51,7 +51,7 @@ void fsm_manual_run(){
 			}
 			if(isButton1Pressed() == 1){
 				// if button is pressed, mode is changed to mode 4 ( modify time for green led)
-				set_timer = 1;
+				set_timer = 0;
 				// reset value of time duration
 				setTimer2(500);
 				status = MAN_GREEN;
@@ -80,7 +80,7 @@ void fsm_manual_run(){
 		}
 		if(isButton1Pressed() == 1){
 			// if button is pressed, mode is changed to mode 1 ( normal mode )
-			set_timer = 1;
+			set_timer = 0;
 			status = INIT;
 			status2 = INIT;
 		}
