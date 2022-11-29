@@ -102,14 +102,7 @@ int main(void)
   int led = 1;		// led 7segment (1,2,3,4)
   while (1)
   {
-	  if(timer3_flag == 1){
-	  setTimer3(250);
-	  display(led);	// display on 7segment
-	  led++;
-	  if(led > 4) led = 1;
-	  }
-	  fsm_automatic_run();  // fsm of normal mode
-	  fsm_modify_run();		// fsm of modify time mode
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
