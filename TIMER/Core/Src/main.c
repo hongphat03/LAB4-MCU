@@ -22,9 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "software_timer.h"
-#include "fsm_automatic.h"
-#include "fsm_manual.h"
+#include "scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,6 +63,9 @@ static void MX_TIM2_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
+void led1(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -96,13 +97,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  status = INIT;	// is status of road 1
-  status2 = INIT;	// is status of road 2
-  setTimer3(50);	// set timer for each led 7segment
-  int led = 1;		// led 7segment (1,2,3,4)
+  SCH_Add_Task(led1, 100, 500);
   while (1)
   {
-
+	  SCH_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -245,8 +243,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	timerRun();
-	getKeyInput();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 
