@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="value"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="value"/>
+			<item value="MAN"/>
 			<item value="set_timer"/>
+			<item value="value"/>
 			<item value="setTimer2(5000);"/>
 			<item value="timer1_flag"/>
 			<item value="timer_flag"/>
@@ -21,6 +22,8 @@
 			<item value="HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);"/>
 		</list>
 		<list key="replacehistory">
+			<item value="MODIFY"/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

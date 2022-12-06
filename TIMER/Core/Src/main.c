@@ -22,9 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "software_timer.h"
-#include "fsm_automatic.h"
-#include "fsm_manual.h"
+#include "scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,6 +56,21 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void ledred(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
+void ledgreen(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
+}
+void ledblue(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
+}
+void ledpurple(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+}
+void ledyellow(){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
+}
 
 /* USER CODE END 0 */
 
@@ -96,20 +109,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  status = INIT;	// is status of road 1
-  status2 = INIT;	// is status of road 2
-  setTimer3(50);	// set timer for each led 7segment
-  int led = 1;		// led 7segment (1,2,3,4)
+
+  SCH_Add_Task(ledred, 10, 50,0);
+  SCH_Add_Task(ledgreen, 10,100,0);
+  SCH_Add_Task(ledblue, 10,150,0);
+  SCH_Add_Task(ledpurple, 10,200,0);
+  SCH_Add_Task(ledyellow, 10,250,0);
   while (1)
   {
-	  if(timer3_flag == 1){
-	  setTimer3(250);
-	  display(led);	// display on 7segment
-	  led++;
-	  if(led > 4) led = 1;
-	  }
-	  fsm_automatic_run();  // fsm of normal mode
-	  fsm_modify_run();		// fsm of modify time mode
+	  SCH_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -211,21 +219,21 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3|GPIO_PIN_4, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
-                          |GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8
+                          |GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
                           |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PA3 PA4 PA5 EN0_Pin
-                           EN1_Pin EN2_Pin EN3_Pin PA10
+  /*Configure GPIO pins : PA3 PA4 PA5 PA6
+                           PA7 PA8 PA9 PA10
                            PA11 PA12 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|EN0_Pin
-                          |EN1_Pin|EN2_Pin|EN3_Pin|GPIO_PIN_10
+  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
+                          |GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10
                           |GPIO_PIN_11|GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -252,8 +260,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	timerRun();
-	getKeyInput();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 

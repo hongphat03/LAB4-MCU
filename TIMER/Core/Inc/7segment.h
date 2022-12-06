@@ -9,5 +9,5 @@
 #define INC_7SEGMENT_H_
 #include "main.h"
 #include "global.h"
-
+void display7SEG(int counter);
 #endif /* INC_7SEGMENT_H_ */

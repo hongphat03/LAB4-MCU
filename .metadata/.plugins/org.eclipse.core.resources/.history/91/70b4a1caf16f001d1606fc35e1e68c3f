@@ -1,0 +1,14 @@
+/*
+ * scheduler.c
+ *
+ *  Created on: Nov 29, 2022
+ *      Author: Hong Phat
+ */
+
+typedef struct{
+	void ( * pTask ) ( void ) ;
+	uint32_t Delay ;
+	uint32_t Period ;
+	uint8_t RunMe;
+	uint32_t TaskID ;
+} sTask;

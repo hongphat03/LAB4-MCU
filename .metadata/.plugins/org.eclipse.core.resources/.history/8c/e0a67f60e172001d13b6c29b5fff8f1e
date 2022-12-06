@@ -1,0 +1,17 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Dec 3, 2022
+ *      Author: Hong Phat
+ */
+
+#ifndef SRC_FSM_MANUAL_C_
+#define SRC_FSM_MANUAL_C_
+
+#include "fsm_manual.h"
+void fsm_manual_run(){
+
+}
+
+
+#endif /* SRC_FSM_MANUAL_C_ */
