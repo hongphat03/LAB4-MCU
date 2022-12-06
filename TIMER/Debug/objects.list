@@ -1,5 +1,4 @@
 "./Core/Src/7segment.o"
-"./Core/Src/PED.o"
 "./Core/Src/button.o"
 "./Core/Src/display.o"
 "./Core/Src/fsm_automatic.o"

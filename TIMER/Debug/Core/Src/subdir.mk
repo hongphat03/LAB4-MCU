@@ -6,7 +6,6 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/7segment.c \
-../Core/Src/PED.c \
 ../Core/Src/button.c \
 ../Core/Src/display.c \
 ../Core/Src/fsm_automatic.c \
@@ -23,7 +22,6 @@ C_SRCS += \
 
 OBJS += \
 ./Core/Src/7segment.o \
-./Core/Src/PED.o \
 ./Core/Src/button.o \
 ./Core/Src/display.o \
 ./Core/Src/fsm_automatic.o \
@@ -40,7 +38,6 @@ OBJS += \
 
 C_DEPS += \
 ./Core/Src/7segment.d \
-./Core/Src/PED.d \
 ./Core/Src/button.d \
 ./Core/Src/display.d \
 ./Core/Src/fsm_automatic.d \

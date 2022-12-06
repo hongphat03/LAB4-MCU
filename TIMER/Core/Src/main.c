@@ -57,19 +57,19 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void ledred(){
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
 }
 void ledgreen(){
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
 }
 void ledblue(){
 	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7);
 }
 void ledpurple(){
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
 }
 void ledyellow(){
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
 
 /* USER CODE END 0 */
@@ -110,11 +110,11 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  SCH_Add_Task(ledred, 10, 50,0);
-  SCH_Add_Task(ledgreen, 10,100,0);
+  SCH_Add_Task(ledyellow, 10, 50,0);
+  SCH_Add_Task(ledpurple, 10,100,0);
   SCH_Add_Task(ledblue, 10,150,0);
-  SCH_Add_Task(ledpurple, 10,200,0);
-  SCH_Add_Task(ledyellow, 10,250,0);
+  SCH_Add_Task(ledgreen, 10,200,0);
+  SCH_Add_Task(ledred, 10,250,0);
   while (1)
   {
 	  SCH_Dispatch_Tasks();
@@ -219,11 +219,11 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3|GPIO_PIN_4, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8
-                          |GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9
+                          |GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3

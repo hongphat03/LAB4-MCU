@@ -52,8 +52,8 @@ void SCH_Delete(uint32_t ID){
 		SCH_tasks_G[index - 1] = SCH_tasks_G[index];
 	}
 	current_index_task--;
-	SCH_tasks_G[current_index_task].pTask = 0x000;
-	SCH_tasks_G[SCH_MAX_TASKS-1].Delay = 2147483647;
-	SCH_tasks_G[SCH_MAX_TASKS-1].Period = 0;
-	SCH_tasks_G[SCH_MAX_TASKS-1].RunMe = 0;
+//	SCH_tasks_G[current_index_task].pTask = 0x000;
+//	SCH_tasks_G[SCH_MAX_TASKS-1].Delay = 2147483647;
+//	SCH_tasks_G[SCH_MAX_TASKS-1].Period = 0;
+//	SCH_tasks_G[SCH_MAX_TASKS-1].RunMe = 0;
 }
